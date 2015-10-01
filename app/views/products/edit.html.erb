@@ -1,0 +1,11 @@
+<h1>Edit User</h1>
+<form action='/products/' method='post'>
+	<input type='text' name='first_name' value='<%= @product.name %>'>
+	<input type="hidden" name="_method" value="patch">
+	<input type="hidden" name="id" value="<%= @product.id %>">
+	<input type='text' name='name' value='<%= @product.name %>'>
+	<textarea name='description'> <%= @product.description %> </textarea>
+	<input type="text" name="pricing" value="<%= @product.pricing %>">
+	<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+	<input type='submit' value='Update'>
+</form> 

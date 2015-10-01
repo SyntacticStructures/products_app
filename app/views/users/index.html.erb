@@ -1,0 +1,31 @@
+<h1>Users Index</h1>
+
+<% if @users %>
+<% @users.each do |user| %>
+  <p><%= user.first_name %></p>
+  <p><a href="/users/<%=user.id%>">show</a></p>
+  <p><a href="/users/<%=user.id%>/edit">edit</a></p>
+  <p>
+  	<form action="/users/<%=user.id%>" method="post">
+  		<input type="hidden" name="_method" value="delete">
+  		<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+  		<input type="submit" value="delete">
+  	</form>
+  </p>
+  <p><%= user.email %></p>
+<% end %>
+<% end %>
+<!-- if the second block will display if it's a 'show' -->
+<% if @user %>
+<% user = @user %>
+  <p><%=user.first_name%></p>
+  <p><%=user.email%></p>
+  <p><a href="/users/<%=user.id%>/edit">edit</a></p>
+  <form action="/users/<%=user.id%>" method="post">
+  		<input type="hidden" name="_method" value="delete">
+  		<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+  		<input type="submit" value="delete">
+  	</form>
+<%end%>
+
+<a href="/users/new/">new user</a>

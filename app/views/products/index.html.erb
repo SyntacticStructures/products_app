@@ -1,0 +1,40 @@
+<h1>Products Index</h1>
+<% if @products %>
+	<table>
+		<th>name</th>
+		<th>description</th>
+		<th>price</th>
+		<th>actions</th>
+		<% @products.each do |product| %>
+			<tr>
+				<td><%= product.name %></td>
+				<td><%= product.description %></td>
+				<td><%= product.pricing %></td>
+				<td><a href="/products/<%= product.id %>">Show</a></td>
+				<td><a href="/products/<%= product.id %>/edit">Edit</a></td>
+				<td><form action="/products/<%= product.id %>" method="post">
+  					<input type="hidden" name="_method" value="delete">
+  					<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+  					<input type="submit" value="delete">
+  					</form>
+  				</td>
+			</tr>
+
+		<% end %>
+	</table>
+
+<% end %>
+
+<% if @product %>
+	<p><%= @product.name %></p>
+	<p><%= @product.description %></p>
+	<p><%= @product.pricing %></p>
+	<form action="/products/<%= @product.id %>" method="post">
+		<input type="hidden" name="_method" value="delete">
+		<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+		<input type="submit" value="delete">
+  	</form>
+	<a href="/products/">Products</a>
+<% end %>
+
+<a href="/products/new/">New Product</a>
